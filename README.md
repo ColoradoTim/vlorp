@@ -1,5 +1,5 @@
 # Vlorp
-A trivial REST API created with Kotlin, Spring Boot, Spring Web, JPA, H2 (in-memory db), gradle, JUnit, and Mockito.
+A small REST API created with Kotlin, Spring Boot, Spring Web, JPA, H2 (in-memory db), Gradle, JUnit 5, and Mockito.
 
 If this was destined to be a production app, next steps would include:
 * more features
@@ -8,11 +8,10 @@ If this was destined to be a production app, next steps would include:
 * ktlint
 * change from in-memory to persisted db
 * specify dependency versions in build.gradle
+* add spring boot monitoring
 
 and may include:
 * document the API (e.g., Swagger)
-* add spring boot monitoring
-* containerize?
+* containerize
 * change server
 * create a UI and/or a reference client. 
-
