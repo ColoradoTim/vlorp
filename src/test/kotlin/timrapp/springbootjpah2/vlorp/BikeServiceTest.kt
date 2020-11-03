@@ -47,6 +47,6 @@ class BikeServiceTest {
         val service = BikeService(mockBikeRepo)
 
         val magna = Bike("Magna")
-        assertThrows(IllegalArgumentException::class.java) {service.create(magna)}
+        assertThrows(IllegalArgumentException::class.java) { service.create(magna) }
     }
 }

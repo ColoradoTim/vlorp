@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class VlorpApplication
 
 fun main(args: Array<String>) {
-	runApplication<VlorpApplication>(*args)
+    runApplication<VlorpApplication>(*args)
 }

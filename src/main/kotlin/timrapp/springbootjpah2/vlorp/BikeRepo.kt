@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface BikeRepo : JpaRepository<Bike, Int> {
-    fun findByNameStartingWith(name: String) : List<Bike>
+    fun findByNameStartingWith(name: String): List<Bike>
 
     @Query("FROM Bike b WHERE b.name like %?1% ORDER BY b.id ASC")
     fun findNameContainsOrderById(substr: String): List<Bike>
