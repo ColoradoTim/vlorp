@@ -1,19 +1,31 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+buildscript {
+    val ktlintGradlePluginVersion = "9.3.0"
+    repositories {
+        maven("https://plugins.gradle.org/m2/")
+    }
+    dependencies {
+        classpath("org.jlleitschuh.gradle:ktlint-gradle:$ktlintGradlePluginVersion")
+    }
+}
+
 plugins {
-	val kotlinVersion = "1.3.72"
-	id("org.springframework.boot") version "2.3.3.RELEASE"
-	id("io.spring.dependency-management") version "1.0.10.RELEASE"
-	kotlin("jvm") version kotlinVersion
-	kotlin("plugin.spring") version kotlinVersion
-	kotlin("plugin.jpa") version kotlinVersion
-	id("com.google.cloud.tools.jib") version "2.5.0"
+    val kotlinVersion = "1.3.72"
+    val ktlintGradlePluginVersion = "9.3.0"
+
+    id("org.springframework.boot") version "2.3.3.RELEASE"
+    id("io.spring.dependency-management") version "1.0.10.RELEASE"
+    kotlin("jvm") version kotlinVersion
+    kotlin("plugin.spring") version kotlinVersion
+    kotlin("plugin.jpa") version kotlinVersion
+    id("com.google.cloud.tools.jib") version "2.5.0"
+    id("org.jlleitschuh.gradle.ktlint") version "$ktlintGradlePluginVersion"
 }
 
 group = "timrapp"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
-
 
 repositories {
 	mavenCentral()
@@ -41,6 +53,15 @@ jib {
 		credHelper = "gcr"
 		tags = setOf("latest")
 	}
+}
+
+subprojects {
+    apply(plugin = "org.jlleitschuh.gradle.ktlint") // Version inherited from parent
+
+    // configure plugin
+    ktlint {
+        debug.set(true)
+    }
 }
 
 tasks.withType<Test> {

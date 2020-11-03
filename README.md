@@ -25,3 +25,6 @@ Container entrypoint set to [java, -cp, /app/resources:/app/classes:/app/libs/*,
 
 ## Redis
 Docker starts a Redis container, but it's not used by the app. Yet.
+
+## Ktlint
+Using Ktlint 0.36 and org.jlleitschuh.gradle.ktlint gradle plugin. 
