@@ -9,7 +9,7 @@ class BikeServiceTest {
     @Test
     fun findAll() {
         val mockBikeRepo = mock(BikeRepo::class.java)
-        val bikes = listOf(Bike())
+        val bikes = listOf(Bike("tricross"))
         Mockito.`when`(mockBikeRepo.findAll()).thenReturn(bikes)
         val service = BikeService(mockBikeRepo)
 
@@ -19,8 +19,7 @@ class BikeServiceTest {
     @Test
     fun findByNameStartingWith() {
         val mockBikeRepo = mock(BikeRepo::class.java)
-        val tricross = Bike()
-        tricross.name = "Tricross"
+        val tricross = Bike("tricross")
         val bikes = listOf(tricross)
         Mockito.`when`(mockBikeRepo.findByNameStartingWith("T")).thenReturn(bikes)
         val service = BikeService(mockBikeRepo)
@@ -33,12 +32,11 @@ class BikeServiceTest {
     @Test
     fun create() {
         val mockBikeRepo = mock(BikeRepo::class.java)
-        val bikes = listOf(Bike())
+        val bikes = listOf(Bike("Pivot"))
         Mockito.`when`(mockBikeRepo.findAll()).thenReturn(bikes)
         val service = BikeService(mockBikeRepo)
 
-        val yeti = Bike()
-        yeti.name = "Yeti"
+        val yeti = Bike("Yeti")
         val createdBikes = service.create(yeti)
         assert(createdBikes.size == 1)
     }
@@ -48,8 +46,7 @@ class BikeServiceTest {
         val mockBikeRepo = mock(BikeRepo::class.java)
         val service = BikeService(mockBikeRepo)
 
-        val magna = Bike()
-        magna.name = "Magna"
+        val magna = Bike("Magna")
         assertThrows(IllegalArgumentException::class.java) {service.create(magna)}
     }
 }

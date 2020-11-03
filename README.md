@@ -14,6 +14,14 @@ If this was destined to be a production app, next steps would include:
 
 and might include:  
 * document the API (e.g., Swagger)  
-* containerize  
 * change server  
 * create a UI and/or a reference client  
+
+
+## Docker
+To build image and run with docker, use `./gradlew clean jibDockerBuild && docker-compose up --build --remove-orphans`
+Google's jib plugin pushes the image it builds to docker registry (run `docker images` to see a list)
+Container entrypoint set to [java, -cp, /app/resources:/app/classes:/app/libs/*, timrapp.springbootjpah2.vlorp.VlorpApplicationKt]
+
+## Redis
+Docker starts a Redis container, but it's not used by the app. Yet.

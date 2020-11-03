@@ -1,0 +1,19 @@
+  version: '3'
+  services:
+    springbootapp:
+      image: vlorp:latest
+      ports:
+        - "8080:8080"
+      depends_on:
+        - redis
+
+    redis:
+      image: "redis:5.0.3-alpine"
+      hostname: redis
+      ports:
+        - 6379:6379
+      healthcheck:
+        test: [ "CMD", "redis-cli", "-p", "6379", "ping" ]
+        interval: 10s
+        timeout: 10s
+        retries: 5

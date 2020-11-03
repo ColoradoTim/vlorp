@@ -7,9 +7,10 @@ plugins {
 	kotlin("jvm") version kotlinVersion
 	kotlin("plugin.spring") version kotlinVersion
 	kotlin("plugin.jpa") version kotlinVersion
+	id("com.google.cloud.tools.jib") version "2.5.0"
 }
 
-group = "timrapp.springbootjpah2"
+group = "timrapp"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
@@ -29,6 +30,16 @@ dependencies {
 	testImplementation("org.mockito:mockito-inline:3.4.6")
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
+	}
+}
+
+// build image and push to local docker registry
+jib {
+	from.image = "openjdk:12-jdk" // use latest image
+	to {
+		image = "vlorp"
+		credHelper = "gcr"
+		tags = setOf("latest")
 	}
 }
 
